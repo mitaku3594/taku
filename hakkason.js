@@ -2,18 +2,11 @@ $(function() {
     // ［検索］ボタンクリックで検索開始
     $('#submit').click(function() {
       // .phpファイルへのアクセス
-      $.ajax(
-        {
-          url: 'https://devltqzil.cybozu.com/k/4/?fbclid=IwAR1FAYIz1o_FWqZSWpoW8amwoiyy0eJ_c8YVqWaeOQ7bCCaIclHV1fTgdOI',
-          type: 'get',
-          data: {'key':'rea','value':'time'},
-          dataType: 'xml',
-          headers:{
-          'key':'X-Cybozu-API-Token',
-          'value':'vGT9DZVrZf0hY8sGcNIJers9u3ybQImloxRG0iiX","description":"","type":"text","enabled":true'
-          }
-        }
-      )
+      var settings = {
+        "url": "https://indigo-whippet-9588.twil.io/kintone-push",
+        "method": "GET"
+      }
+      $.ajax(settings)
       // 検索成功時にはページに結果を反映
       .done(function(data) {
         // 結果リストをクリア
@@ -34,7 +27,7 @@ $(function() {
         });
       })
       // 検索失敗時には、その旨をダイアログ表示
-      .fail(function() {
+      .fail(function(data, rea, time ) {
         window.alert('正しい結果を得られませんでした。');
       });
     });
